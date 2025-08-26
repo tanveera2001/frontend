@@ -9,7 +9,7 @@ const ProjectPage = () => {
 useEffect(() => {
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("https://backend-k5w6.vercel.app/api/projects");
+      const response = await axios.get("https://backend-nu-snowy-70.vercel.app/api/projects");
       setProjects(response.data);
     } catch (error) {
       console.error("Error fetching projects:", error);
