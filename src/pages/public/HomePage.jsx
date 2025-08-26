@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/projects");
+        const response = await axios.get("https://backend-nu-snowy-70.vercel.app/api/projects");
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
