@@ -6,18 +6,18 @@ const ProjectPage = () => {
   const [projects, setProjects] = useState([]);
 
   // Fetch projects from backend
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get("https://backend-pjzo.vercel.app/api/projects"); // your backend route
-        setProjects(response.data);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
-    };
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get("https://backend-k5w6.vercel.app/api/projects");
+      setProjects(response.data);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
+  };
 
-    fetchProjects();
-  }, []);
+  fetchProjects();
+}, []);
 
   return (
     <div className="h-auto bg-gray-50 text-gray-900 p-6">
