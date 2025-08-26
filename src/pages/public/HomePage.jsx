@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("https://backend-c6qw.vercel.app/api/projects");
+        const response = await axios.get("https://backend-pjzo.vercel.app/api/projects");
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -80,7 +80,7 @@ const HomePage = () => {
         {/* Profile image */}
         <div className="mt-6 md:mt-15 mr-6">
           <img
-            src="../public/myphoto.jpeg"
+            src="/myphoto.jpeg"
             alt="profile"
             className="rounded-full w-48 h-48 object-cover"
           />
