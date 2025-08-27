@@ -44,22 +44,22 @@ const navLinkClasses = ({ isActive }) =>
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 text-center">
               <li>
-                <NavLink to="/" end className={navLinkClasses}>
+                <NavLink to="/" end className={navLinkClasses} onClick={() => setIsOpen(false)}>
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" end className={navLinkClasses}>
+                <NavLink to="/about" end className={navLinkClasses} onClick={() => setIsOpen(false)}>
                   About
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/projects" end className={navLinkClasses}>
+                <NavLink to="/projects" end className={navLinkClasses} onClick={() => setIsOpen(false)}>
                   Projects
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/contact" end className={navLinkClasses}>
+                <NavLink to="/contact" end className={navLinkClasses} onClick={() => setIsOpen(false)}>
                   Contact
                 </NavLink>
               </li>
