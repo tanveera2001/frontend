@@ -2,10 +2,11 @@ import { NavLink } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 
 const navLinkClasses = ({ isActive }) =>
-  `block py-1 px-2 text-base duration-200 ${
-    isActive
-      ? "bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-600 font-semibold"
-      : "text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-red-400 hover:via-red-500 hover:to-red-600"
+  `block py-1 px-2 text-base duration-200 
+  ${ 
+    isActive 
+    ? "bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-red-500 to-red-600 font-semibold"
+    : "text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-red-400 hover:via-red-500 hover:to-red-600"
   }`;
 
 const Footer = () => {
