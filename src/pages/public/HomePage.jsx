@@ -2,24 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import ProjectCard from "../../components/ProjectCard";
-import axios from "axios";
+import api from "../../services/api";
 
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
 
-  // Fetch projects from backend
-useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      const response = await axios.get("https://backend-nu-snowy-70.vercel.app/api/projects");
-      setProjects(response.data);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
+  // This code snippet fetches projects from the database.
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await api.get("/api/projects");
+        setProjects(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
 
-  fetchProjects();
-}, []);
+    fetchProjects();
+  }, []);
 
   return (
     <div className="h-auto bg-gray-50 text-gray-900 p-6">
@@ -97,14 +97,16 @@ useEffect(() => {
         {/* Project Cards */}
         <div className="grid md:grid-cols-3 gap-6">
           {projects.length > 0 ? (
-            projects.slice(0, 3).map((project) => (
-              <ProjectCard
-                key={project._id}
-                title={project.title}
-                description={project.description}
-                link={project.url}
-              />
-            ))
+            projects
+              .slice(0, 3)
+              .map((project) => (
+                <ProjectCard
+                  key={project._id}
+                  title={project.title}
+                  description={project.description}
+                  link={project.url}
+                />
+              ))
           ) : (
             <p>No projects found.</p>
           )}
