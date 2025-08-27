@@ -1,130 +1,34 @@
 // src/pages/About.jsx
 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WorkExperienceCard from "../../components/WorkExperienceCard";
 import CertificationCard from "./../../components/CertificationCard";
 import EducationCard from "../../components/EducationCard";
-
-const tools = [
-  // Languages
-  {
-    name: "JavaScript",
-    exp: "3 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
-  },
-  {
-    name: "C",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png",
-  },
-  {
-    name: "C++",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg",
-  },
-  {
-    name: "Java",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
-  },
-  {
-    name: "PHP",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg",
-  },
-
-  // Frontend
-  {
-    name: "React",
-    exp: "3 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-  },
-  {
-    name: "HTML5",
-    exp: "3 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg",
-  },
-  {
-    name: "CSS3",
-    exp: "3 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg",
-  },
-  {
-    name: "Tailwind CSS",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
-  },
-  {
-    name: "Bootstrap CSS",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg",
-  },
-
-  // Backend
-  {
-    name: "Express.js",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png",
-  },
-  {
-    name: "Node.js",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg",
-  },
-
-  // Databases
-  {
-    name: "MongoDB",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg",
-  },
-  {
-    name: "MySQL",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg",
-  },
-
-  // Editors & Tools
-  {
-    name: "VS Code",
-    exp: "3 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg",
-  },
-  {
-    name: "Code::Blocks",
-    exp: "2 years",
-    logo: "https://commons.wikimedia.org/wiki/Special:FilePath/Codeblocks_logo.png",
-  },
-  {
-    name: "NetBeans",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/98/Apache_NetBeans_Logo.svg",
-  },
-  {
-    name: "phpMyAdmin",
-    exp: "2 years",
-    logo: "https://www.phpmyadmin.net/static/images/logo-og.png",
-  },
-
-  // Version Control
-  {
-    name: "Git",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg",
-  },
-  {
-    name: "GitHub",
-    exp: "2 years",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
-  },
-];
+import api from "../../services/api";
 
 const AboutPage = () => {
+  const [tools, setTools] = useState([]);
+
+  // Fetch tools/technologies from backend
+  useEffect(() => {
+    const fetchTools = async () => {
+      try {
+        const response = await api.get("/api/tools-technologies");
+        setTools(response.data); // backend returns array directly
+      } catch (error) {
+        console.error("Error fetching tools:", error);
+      }
+    };
+    fetchTools();
+  }, []);
+
   return (
     <div className="max-w-5xl mx-auto h-auto space-y-20 p-6 bg-gray-50 text-gray-900">
+      
       {/* Resume */}
       <section>
-        <h2 className="text-4xl font-bold mb-10">📋Resume</h2>
+        <h2 className="text-4xl font-bold mb-10">📋 Resume</h2>
         <a
           href="/resume.pdf"
           target="_blank"
@@ -144,7 +48,11 @@ const AboutPage = () => {
               key={i}
               className="flex items-center bg-gray-300 rounded-xl shadow p-3"
             >
-              <img src={tool.logo} alt={tool.name} className="w-8 h-8 mr-3" />
+              <img
+                src={`${import.meta.env.VITE_API_URL}/${tool.image}`}
+                alt={tool.name}
+                className="w-8 h-8 mr-3"
+              />
               <div>
                 <p className="font-medium">{tool.name}</p>
                 <p className="text-sm text-gray-500">{tool.exp}</p>

@@ -14,6 +14,7 @@ import EducationPage from "./pages/admin/EducationPage";
 import CertificationPage from "./pages/admin/CertificationPage";
 import AdminLayout from "./layouts/AdminLayout";
 import ProjectsPage from "./pages/admin/ProjectsPage";
+import ToolsTechnologyPage from "./pages/admin/ToolsTechnologyPage";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
 					{/* Admin Layout */}
 				<Route element={<AdminLayout />}>
 					<Route path="/admin-panel/projects" element={<ProjectsPage />} />
+					<Route path="/admin-panel/tools-technologies" element={<ToolsTechnologyPage />} />
 					<Route path="/admin-panel/work-experience" element={<WorkExperiencePage/>} />
 					<Route path="/admin-panel/education" element={<EducationPage />} />
 					<Route path="/admin-panel/certifications" element={<CertificationPage />} />
