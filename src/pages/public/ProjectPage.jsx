@@ -4,6 +4,8 @@ import api from "../../services/api";
 
 const ProjectPage = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // This code snippet fetches projects from the database.
   useEffect(() => {
@@ -13,6 +15,9 @@ const ProjectPage = () => {
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
+        setError("Failed to load projects.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -30,7 +35,11 @@ const ProjectPage = () => {
 
         {/* Project Cards */}
         <div className="grid md:grid-cols-3 gap-6">
-          {projects.length > 0 ? (
+          {loading ? (
+            <p className="text-gray-500">Please wait, loading projects...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : projects.length > 0 ? (
             projects.map((project) => (
               <ProjectCard
                 key={project._id}

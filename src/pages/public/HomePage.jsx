@@ -6,6 +6,8 @@ import api from "../../services/api";
 
 const HomePage = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // This code snippet fetches projects from the database.
   useEffect(() => {
@@ -15,6 +17,9 @@ const HomePage = () => {
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
+        setError("Failed to load projects.");
+      } finally {
+        setLoading(false); // After fetching the data, this will be false. 
       }
     };
 
@@ -23,7 +28,8 @@ const HomePage = () => {
 
   return (
     <div className="h-auto bg-gray-50 text-gray-900 p-6">
-      {/* Header */}
+
+      {/* Header Section */}
       <header className="flex flex-col md:flex-row justify-between items-start md:items-start mb-12">
         <div>
           <h1 className="text-4xl font-bold">Tanveer Ahmed</h1>
@@ -96,10 +102,12 @@ const HomePage = () => {
 
         {/* Project Cards */}
         <div className="grid md:grid-cols-3 gap-6">
-          {projects.length > 0 ? (
-            projects
-              .slice(0, 3)
-              .map((project) => (
+          {loading ? (
+            <p className="text-gray-500">Please wait, loading projects...</p>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : projects.length > 0 ? (
+            projects.slice(0, 3).map((project) => (
                 <ProjectCard
                   key={project._id}
                   title={project.title}
@@ -112,6 +120,7 @@ const HomePage = () => {
           )}
         </div>
 
+          
         <div className="mt-5">
           <Link
             to="/projects"
