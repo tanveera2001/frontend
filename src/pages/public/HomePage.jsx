@@ -30,7 +30,7 @@ const HomePage = () => {
     <div className="h-auto bg-gray-50 text-gray-900 p-6">
 
       {/* Header Section */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-start mb-12">
+      <header className="flex flex-col md:flex-row justify-between items-center md:items-start mb-12">
         <div>
           <h1 className="text-4xl font-bold">Tanveer Ahmed</h1>
           <p className="mt-4 text-lg text-gray-600">Full-Stack Web Developer</p>
@@ -84,7 +84,7 @@ const HomePage = () => {
         </div>
 
         {/* Profile image */}
-        <div className="mt-6 md:mt-15 mr-6">
+        <div className="mt-10 md:mt-16 flex justify-center md:justify-end">
           <img
             src="/myphoto.jpeg"
             alt="profile"
@@ -108,19 +108,19 @@ const HomePage = () => {
             <p className="text-red-500">{error}</p>
           ) : projects.length > 0 ? (
             projects.slice(0, 3).map((project) => (
-                <ProjectCard
-                  key={project._id}
-                  title={project.title}
-                  description={project.description}
-                  link={project.url}
-                />
-              ))
+              <ProjectCard
+                key={project._id}
+                title={project.title}
+                description={project.description}
+                link={project.url}
+              />
+            ))
           ) : (
             <p>No projects found.</p>
           )}
         </div>
 
-          
+
         <div className="mt-5">
           <Link
             to="/projects"
