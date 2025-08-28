@@ -34,7 +34,7 @@ const HomePage = () => {
   {/* Left side: text */}
   <div className="mt-6 md:mt-0">
     <h1 className="text-4xl font-bold text-center md:text-left">Tanveer Ahmed</h1>
-    <p className="mt-4 text-lg text-gray-600 text-center md:text-left">Full-Stack Web Developer</p>
+    <p className="mt-2 text-lg text-gray-600 text-center md:text-left">Full-Stack Web Developer</p>
     <p className="mt-4 max-w-2xl">
       I’m a determined, extroverted person full of enthusiasm. I enjoy
       working hard and collaborating with others. I am currently studying
