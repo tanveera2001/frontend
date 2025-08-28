@@ -44,12 +44,12 @@ const AboutPage = () => {
 
       {/* Resume */}
       <section>
-        <h2 className="text-4xl font-bold mb-10">📋 Resume</h2>
+        <h2 className="text-4xl font-bold mb-8">📋 Resume</h2>
         <a
-          href="/resume.pdf"
+          href={`${import.meta.env.VITE_API_URL}/pdfs/1753468137231-tanveer-resume.pdf`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-bold px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 shadow-md"
+          className="block mx-27 sm:inline-block sm:mx-0 font-bold px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 shadow-md"
         >
           ↗️ View Resume
         </a>
