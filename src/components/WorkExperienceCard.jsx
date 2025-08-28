@@ -1,36 +1,41 @@
-const WorkExperienceCard = ({ date, title, company, location, points, logo }) => {
+const WorkExperienceCard = ({ date, role, company, location, points, logo }) => {
   return (
     <div className="relative bg-white rounded-2xl shadow p-4">
       {/* Circle on the timeline */}
       <div className="absolute -left-10 top-5 w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
 
-      <div className="flex items-center justify-between gap-6">
-        {/* Left side: text */}
+      {/* First div: Info + Logo */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        {/* Info Section */}
         <div className="flex-1">
           {date && <p className="text-sm text-gray-500">{date}</p>}
-          {title && <h3 className="text-lg font-semibold">{title}</h3>}
+          {role && <h3 className="text-lg font-semibold">{role}</h3>}
           {company && <p className="text-gray-700">{company}</p>}
-          {location && <p className="text-sm text-gray-500 mb-3">{location}</p>}
-          {points && (
-            <ul className="list-disc list-inside space-y-1 text-gray-700">
-              {points.map((p, i) => (
-                <li key={i}>{p}</li>
-              ))}
-            </ul>
-          )}
+          {location && <p className="text-sm text-gray-500">{location}</p>}
         </div>
 
-        {/* Right side: logo */}
+        {/* Logo Section */}
         {logo && (
           <div className="flex-shrink-0">
             <img
               src={logo}
               alt={company || "logo"}
-              className="h-30 w-auto object-contain"
+              className="h-28 w-auto object-contain mx-auto md:mx-0"
             />
           </div>
         )}
       </div>
+
+      {/* Second div: Points */}
+      {points && (
+        <div className="mt-4">
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            {points.map((p, i) => (
+              <li key={i}>{p}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

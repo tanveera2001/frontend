@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import WorkExperienceCard from "../../components/WorkExperienceCard";
 import CertificationCard from "./../../components/CertificationCard";
 import EducationCard from "../../components/EducationCard";
@@ -11,6 +11,7 @@ import TimelineCard from "../../components/TimelineCard";
 const AboutPage = () => {
   const [tools, setTools] = useState([]);
   const [education, setEducation] = useState([]);
+  const [workExperience, setWorkExperience] = useState([]);
 
   // Fetch tools/technologies from backend
   useEffect(() => {
@@ -38,6 +39,19 @@ const AboutPage = () => {
     };
     fetchEducation();
   }, []);
+// Fetch work experience from backend
+  useEffect(() => {
+    const fetchWorkExperience = async () => {
+      try {
+        const response = await api.get("/api/work-experience"); 
+        setWorkExperience(response.data);
+      } catch (error) {
+        console.error("Failed to fetch work experience:", error);
+      }
+    };
+
+    fetchWorkExperience();
+  }, []);
 
   return (
     <div className="max-w-5xl mx-auto h-auto space-y-20 p-6 bg-gray-50 text-gray-900">
@@ -59,9 +73,9 @@ const AboutPage = () => {
       <section>
         <h2 className="text-4xl font-bold mb-6">🛠 Tools/Technology</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {tools.map((tool, i) => (
+          {tools.map((tool) => (
             <div
-              key={i}
+              key={tool._id}
               className="flex items-center bg-gray-300 rounded-xl shadow p-3"
             >
               <img
@@ -81,26 +95,21 @@ const AboutPage = () => {
       {/* Work Experience */}
 
       <section>
-        <h2 className="text-4xl font-bold mb-6">💻 Work Experience</h2>
-        <TimelineCard>
+      <h2 className="text-4xl font-bold mb-6">💻 Work Experience</h2>
+      <TimelineCard>
+        {workExperience.map((exp) => (
           <WorkExperienceCard
-            logo="https://hospitalcareers.com/files/pictures/72e79be9a39fa64dd3e44512e0039c18.jpg"
-            points={[
-              <>
-                I don’t have formal work experience yet, but I have been learning
-                web development for the past 3 years. As a Computer Science and
-                Engineering (CSE) student, I’ve gained strong technical skills and
-                built several projects. If you’d like to explore them, please{" "}
-                <Link to="/projects" className="text-blue-600 hover:underline">
-                  click here
-                </Link>
-                .
-              </>,
-            ]}
+            key={exp._id}
+            date={`${exp.startDate} - ${exp.endDate}`}
+            role={exp.role}
+            company={exp.company}
+            location={exp.location}
+            logo={`${import.meta.env.VITE_API_URL}/${exp.image}`}
+            points={exp.points}
           />
-          {/* Add more WorkExperienceCard here if needed */}
-        </TimelineCard>
-      </section>
+        ))}
+      </TimelineCard>
+    </section>
 
       {/* Education */}
       <section>
