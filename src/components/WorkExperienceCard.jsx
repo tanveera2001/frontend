@@ -1,8 +1,9 @@
-import TimelineCard from "./TimelineCard";
-
 const WorkExperienceCard = ({ date, title, company, location, points, logo }) => {
   return (
-    <TimelineCard>
+    <div className="relative bg-white rounded-2xl shadow p-4">
+      {/* Circle on the timeline */}
+      <div className="absolute -left-10 top-5 w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
+
       <div className="flex items-center justify-between gap-6">
         {/* Left side: text */}
         <div className="flex-1">
@@ -10,11 +11,13 @@ const WorkExperienceCard = ({ date, title, company, location, points, logo }) =>
           {title && <h3 className="text-lg font-semibold">{title}</h3>}
           {company && <p className="text-gray-700">{company}</p>}
           {location && <p className="text-sm text-gray-500 mb-3">{location}</p>}
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
-            {points.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
+          {points && (
+            <ul className="list-disc list-inside space-y-1 text-gray-700">
+              {points.map((p, i) => (
+                <li key={i}>{p}</li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* Right side: logo */}
@@ -28,7 +31,7 @@ const WorkExperienceCard = ({ date, title, company, location, points, logo }) =>
           </div>
         )}
       </div>
-    </TimelineCard>
+    </div>
   );
 };
 

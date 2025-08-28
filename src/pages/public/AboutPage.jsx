@@ -1,4 +1,4 @@
-// src/pages/About.jsx
+
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -6,9 +6,11 @@ import WorkExperienceCard from "../../components/WorkExperienceCard";
 import CertificationCard from "./../../components/CertificationCard";
 import EducationCard from "../../components/EducationCard";
 import api from "../../services/api";
+import TimelineCard from "../../components/TimelineCard";
 
 const AboutPage = () => {
   const [tools, setTools] = useState([]);
+  const [education, setEducation] = useState([]);
 
   // Fetch tools/technologies from backend
   useEffect(() => {
@@ -23,9 +25,23 @@ const AboutPage = () => {
     fetchTools();
   }, []);
 
+
+  // Fetch education from backend
+  useEffect(() => {
+    const fetchEducation = async () => {
+      try {
+        const response = await api.get("/api/education");
+        setEducation(response.data);
+      } catch (error) {
+        console.error("Error fetching education:", error);
+      }
+    };
+    fetchEducation();
+  }, []);
+
   return (
     <div className="max-w-5xl mx-auto h-auto space-y-20 p-6 bg-gray-50 text-gray-900">
-      
+
       {/* Resume */}
       <section>
         <h2 className="text-4xl font-bold mb-10">📋 Resume</h2>
@@ -63,59 +79,57 @@ const AboutPage = () => {
       </section>
 
       {/* Work Experience */}
+
       <section>
         <h2 className="text-4xl font-bold mb-6">💻 Work Experience</h2>
-        <WorkExperienceCard
-          logo="https://hospitalcareers.com/files/pictures/72e79be9a39fa64dd3e44512e0039c18.jpg"
-          points={[
-            <>
-              I don’t have formal work experience yet, but I have been learning
-              web development for the past 3 years. As a Computer Science and
-              Engineering (CSE) student, I’ve gained strong technical skills and
-              built several projects. If you’d like to explore them, please{" "}
-              <Link to="/projects" className="text-blue-600 hover:underline">
-                click here
-              </Link>
-              .
-            </>
-          ]}
-        />
+        <TimelineCard>
+          <WorkExperienceCard
+            logo="https://hospitalcareers.com/files/pictures/72e79be9a39fa64dd3e44512e0039c18.jpg"
+            points={[
+              <>
+                I don’t have formal work experience yet, but I have been learning
+                web development for the past 3 years. As a Computer Science and
+                Engineering (CSE) student, I’ve gained strong technical skills and
+                built several projects. If you’d like to explore them, please{" "}
+                <Link to="/projects" className="text-blue-600 hover:underline">
+                  click here
+                </Link>
+                .
+              </>,
+            ]}
+          />
+          {/* Add more WorkExperienceCard here if needed */}
+        </TimelineCard>
       </section>
 
       {/* Education */}
       <section>
         <h2 className="text-4xl font-bold mb-6">🎓 Education</h2>
-        <EducationCard
-          date="2023 - Current"
-          degree="Bachelors of Science in Computer Science and Engineering"
-          university="North South University"
-          location="Bashundhara, Dhaka, Bangladesh"
-          logo="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/North_South_University_Monogram.svg/1200px-North_South_University_Monogram.svg.png"
-        />
-        <EducationCard
-          date="July 2019 - June 2022"
-          degree="Higher Secondary Certificate (HSC)"
-          university="Dhaka College"
-          location="New Market, Dhaka, Bangladesh"
-          logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZpu3RNS9oJ-m8JG5pRr446fj1Uny7eiyXeA&s"
-        />
-        <EducationCard
-          date="Jan 2010 - June 2019"
-          degree="Secondary School Certificate (SSC)"
-          university="Ideal School and College"
-          location="Motijheel, Dhaka, Bangladesh"
-          logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaE0zJ7p6klagsqNwXejllWAHfBkWSp5xuKw&s"
-        />
+        <TimelineCard>
+          {education.map((edu) => (
+            <EducationCard
+              key={edu._id}
+              date={`${edu.startDate} - ${edu.endDate}`}
+              degree={edu.degree}
+              university={edu.institution}
+              location={edu.location}
+              logo={`${import.meta.env.VITE_API_URL}/${edu.image}`}
+            />
+          ))}
+        </TimelineCard>
       </section>
 
       {/* Certifications */}
       <section>
         <h2 className="text-4xl font-bold mb-6">📜 Certifications</h2>
-        <CertificationCard
-          name="No certificate"
-          issuer="N/A"
-          logo="https://www.shutterstock.com/image-vector/circle-check-mark-shape-vector-600nw-2470360977.jpg"
-        />
+        <TimelineCard>
+          <CertificationCard
+            name="No certificate"
+            issuer="N/A"
+            logo="https://www.shutterstock.com/image-vector/circle-check-mark-shape-vector-600nw-2470360977.jpg"
+          />
+          {/* Add more CertificationCard here if needed */}
+        </TimelineCard>
       </section>
     </div>
   );

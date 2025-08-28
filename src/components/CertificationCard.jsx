@@ -1,8 +1,9 @@
-import TimelineCard from "./TimelineCard";
-
 const CertificationCard = ({ name, issuer, logo }) => {
   return (
-    <TimelineCard>
+    <div className="relative bg-white rounded-2xl shadow p-4">
+      {/* Circle on the timeline */}
+      <div className="absolute -left-10 top-5 w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
+
       <div className="flex items-center justify-between gap-6">
         {/* Left side: text */}
         <div className="flex-1">
@@ -21,7 +22,7 @@ const CertificationCard = ({ name, issuer, logo }) => {
           </div>
         )}
       </div>
-    </TimelineCard>
+    </div>
   );
 };
 

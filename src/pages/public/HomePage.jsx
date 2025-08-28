@@ -30,68 +30,69 @@ const HomePage = () => {
     <div className="h-auto bg-gray-50 text-gray-900 p-6">
 
       {/* Header Section */}
-      <header className="flex flex-col md:flex-row justify-between items-center md:items-start mb-12">
-        <div>
-          <h1 className="text-4xl font-bold">Tanveer Ahmed</h1>
-          <p className="mt-4 text-lg text-gray-600">Full-Stack Web Developer</p>
-          <p className="mt-4 max-w-2xl">
-            I’m a determined, extroverted person full of enthusiasm. I enjoy
-            working hard and collaborating with others. I am currently studying
-            Computer Science and Engineering (CSE) at North South University.
-            Additionally, I have three years of experience in web development.
-            My goal is to continually improve my technical and communication
-            skills.
-          </p>
+<header className="flex flex-col-reverse md:flex-row justify-between items-center md:items-start mb-12">
+  {/* Left side: text */}
+  <div className="mt-6 md:mt-0">
+    <h1 className="text-4xl font-bold text-center md:text-left">Tanveer Ahmed</h1>
+    <p className="mt-4 text-lg text-gray-600 text-center md:text-left">Full-Stack Web Developer</p>
+    <p className="mt-4 max-w-2xl">
+      I’m a determined, extroverted person full of enthusiasm. I enjoy
+      working hard and collaborating with others. I am currently studying
+      Computer Science and Engineering (CSE) at North South University.
+      Additionally, I have three years of experience in web development.
+      My goal is to continually improve my technical and communication
+      skills.
+    </p>
 
-          {/* Social icons */}
-          <div className="mt-6 flex items-center justify-between text-gray-500">
-            <div className="flex items-center space-x-6">
-              <a
-                href="https://github.com/tanveera2001"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-gray-900"
-              >
-                <FaGithub className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/md-tanveer-ahmed-23b06023b/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-blue-600"
-              >
-                <FaLinkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://stackoverflow.com/users/20884813/md-tanveer-ahmed"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-orange-700"
-              >
-                <FaStackOverflow className="w-6 h-6" />
-              </a>
-            </div>
+    {/* Social icons */}
+    <div className="mt-6 flex items-center justify-between text-gray-500">
+      <div className="flex items-center space-x-6">
+        <a
+          href="https://github.com/tanveera2001"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-gray-900"
+        >
+          <FaGithub className="w-6 h-6" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/md-tanveer-ahmed-23b06023b/"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-blue-600"
+        >
+          <FaLinkedin className="w-6 h-6" />
+        </a>
+        <a
+          href="https://stackoverflow.com/users/20884813/md-tanveer-ahmed"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-orange-700"
+        >
+          <FaStackOverflow className="w-6 h-6" />
+        </a>
+      </div>
 
-            <div>
-              <Link
-                to="/about"
-                className="px-6 py-3 border text-gray-700 font-semibold rounded-lg shadow hover:bg-gray-200"
-              >
-                More Info
-              </Link>
-            </div>
-          </div>
-        </div>
+      <div>
+        <Link
+          to="/about"
+          className="px-6 py-3 border text-gray-700 font-semibold rounded-lg shadow hover:bg-gray-200"
+        >
+          More Info
+        </Link>
+      </div>
+    </div>
+  </div>
 
-        {/* Profile image */}
-        <div className="mt-10 md:mt-16 flex justify-center md:justify-end">
-          <img
-            src="/myphoto.jpeg"
-            alt="profile"
-            className="rounded-full w-48 h-48 object-cover"
-          />
-        </div>
-      </header>
+  {/* Profile image */}
+  <div className="mb-6 md:mb-0 flex justify-center md:justify-end">
+    <img
+      src="/myphoto.jpeg"
+      alt="profile"
+      className="rounded-full w-48 h-48 object-cover"
+    />
+  </div>
+</header>
 
       {/* Projects Section */}
       <section>
